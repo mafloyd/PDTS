@@ -43,7 +43,7 @@ git push -u origin feature/<YOUR FEATURE NAME>
 ####Commit
 
 ```PowerShell
-git add -a
+git add -u
 git commit -m "<YOUR CHECK-IN NOTES>"
 ```
 
