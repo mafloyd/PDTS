@@ -605,5 +605,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />
+    <None Include="Scripts\dbo.Facility.data.sql" />
+    <None Include="Scripts\dbo.Modules.data.sql" />
+    <None Include="Scripts\dbo.PdtsUser.data.sql" />
+    <None Include="Scripts\dbo.User_Facility_Xref.data.sql" />
+    <None Include="Scripts\dbo.User_Module_Xref.data.sql" />
   </ItemGroup>
 </Project>
