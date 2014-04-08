@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[GLCrossWalk] (
+    [GL_CROSS_WALK_ID]    INT           IDENTITY (1, 1) NOT NULL,
+    [COID]                VARCHAR (5)   NULL,
+    [SOURCE_ACCOUNT]      VARCHAR (50)  NOT NULL,
+    [SOURCE_ACCOUNT_DESC] VARCHAR (100) NULL,
+    [LPNTAccount]         VARCHAR (50)  NULL,
+    [EXCLUDE]             BIT           CONSTRAINT [DF_GLCrossWalk_EXCLUDE] DEFAULT ((0)) NOT NULL,
+    [FS_CODE]             VARCHAR (6)   NULL,
+    [FS_CODE_DESC]        VARCHAR (255) NULL,
+    [CREATE_DATE]         DATETIME      CONSTRAINT [DF_GLCrossWalk_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID]  INT           NOT NULL,
+    [UPDATE_DATE]         DATETIME      NULL,
+    [UPDATED_BY_USER_ID]  INT           NULL,
+    CONSTRAINT [PK_GL_CROSS_WALK] PRIMARY KEY CLUSTERED ([GL_CROSS_WALK_ID] ASC),
+    CONSTRAINT [FK_GLCrossWalk_CreateUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_GLCrossWalk_Facility] FOREIGN KEY ([COID]) REFERENCES [dbo].[Facility] ([COID]),
+    CONSTRAINT [FK_GLCrossWalk_UpdateUser] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

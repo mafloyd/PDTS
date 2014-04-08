@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Phone_Type] (
+    [PHONE_TYPE_ID]      INT          NOT NULL,
+    [SHORT_NAME]         VARCHAR (20) NOT NULL,
+    [LONG_NAME]          VARCHAR (50) NOT NULL,
+    [CREATE_DATE]        DATETIME     CONSTRAINT [DF_Phone_Type_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID] INT          NOT NULL,
+    [UPDATE_DATE]        DATETIME     NULL,
+    [UPDATED_BY_USER_ID] INT          NULL,
+    CONSTRAINT [PK_Phone_Type] PRIMARY KEY CLUSTERED ([PHONE_TYPE_ID] ASC),
+    CONSTRAINT [FK_Phone_Type_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Phone_Type_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

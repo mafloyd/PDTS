@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Surgical_Type] (
+    [SURGICAL_TYPE_ID]   INT           NOT NULL,
+    [SHORT_NAME]         VARCHAR (20)  NOT NULL,
+    [LONG_NAME]          VARCHAR (100) NOT NULL,
+    [CREATE_DATE]        DATETIME      CONSTRAINT [DF_Surgical_Type_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID] INT           NOT NULL,
+    [UPDATE_DATE]        DATETIME      NULL,
+    [UPDATED_BY_USER_ID] INT           NULL,
+    CONSTRAINT [PK_Surgical_Type] PRIMARY KEY CLUSTERED ([SURGICAL_TYPE_ID] ASC),
+    CONSTRAINT [FK_Surgical_Type_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Surgical_Type_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

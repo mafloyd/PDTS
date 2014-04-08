@@ -1,0 +1,17 @@
+﻿CREATE TABLE [dbo].[BudgetYear_Admit] (
+    [BUDGETYEAR_ADMIT_ID] INT      IDENTITY (1, 1) NOT NULL,
+    [PDTS_PROVIDER_ID]    INT      NOT NULL,
+    [MONTHNO]             TINYINT  NOT NULL,
+    [YEAR]                SMALLINT NOT NULL,
+    [ADMITS]              INT      NOT NULL,
+    [CREATE_DATE]         DATETIME CONSTRAINT [DF_BudgetYear_Admit_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID]  INT      NOT NULL,
+    [UPDATE_DATE]         DATETIME NULL,
+    [UPDATED_BY_USER_ID]  INT      NULL,
+    [OVERRIDDEN]          BIT      CONSTRAINT [DF_BudgetYear_Admit_OVERRIDDEN] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_BudgetYear_Admit_1] PRIMARY KEY CLUSTERED ([BUDGETYEAR_ADMIT_ID] ASC),
+    CONSTRAINT [FK_BudgetYear_Admit_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_BudgetYear_Admit_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_BudgetYear_Admit_Provider] FOREIGN KEY ([PDTS_PROVIDER_ID]) REFERENCES [dbo].[Provider] ([PDTS_PROVIDER_ID]) ON DELETE CASCADE
+);
+

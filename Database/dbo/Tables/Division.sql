@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[Division] (
+    [DIVISION_ID]           INT          NOT NULL,
+    [NAME]                  VARCHAR (50) NOT NULL,
+    [CREATE_DATE]           DATETIME     CONSTRAINT [DF_Division_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID]    INT          NOT NULL,
+    [UPDATE_DATE]           DATETIME     NULL,
+    [UPDATED_BY_USER_ID]    INT          NULL,
+    [CFO]                   VARCHAR (50) NULL,
+    [CFO_EMAIL]             VARCHAR (50) NULL,
+    [CNO]                   VARCHAR (50) NULL,
+    [CNO_EMAIL]             VARCHAR (50) NULL,
+    [CEO]                   VARCHAR (50) NULL,
+    [CEO_EMAIL]             VARCHAR (50) NULL,
+    [CONTROLLER]            VARCHAR (50) NULL,
+    [CONTROLLER_EMAIL]      VARCHAR (50) NULL,
+    [ADMIN_ASSISTANT]       VARCHAR (50) NULL,
+    [ADMIN_ASSISTANT_EMAIL] VARCHAR (50) NULL,
+    [COO]                   VARCHAR (50) NULL,
+    [COO_EMAIL]             VARCHAR (50) NULL,
+    [EXTRA_STATS_VISIBLE]   BIT          CONSTRAINT [DF_Division_EXTRA_STATS_VISIBLE] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_Division] PRIMARY KEY CLUSTERED ([DIVISION_ID] ASC),
+    CONSTRAINT [FK_Division_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Division_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

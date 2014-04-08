@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ProviderTitle] (
+    [PROVIDER_TITLE_ID] INT          IDENTITY (1, 1) NOT NULL,
+    [NAME]              VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_ProviderTitle] PRIMARY KEY CLUSTERED ([PROVIDER_TITLE_ID] ASC)
+);
+

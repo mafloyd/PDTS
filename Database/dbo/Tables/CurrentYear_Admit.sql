@@ -1,0 +1,16 @@
+﻿CREATE TABLE [dbo].[CurrentYear_Admit] (
+    [CURRENTYEAR_ADMIT_ID] INT      IDENTITY (1, 1) NOT NULL,
+    [PDTS_PROVIDER_ID]     INT      NOT NULL,
+    [MONTHNO]              TINYINT  NOT NULL,
+    [YEAR]                 SMALLINT NOT NULL,
+    [ADMITS]               INT      NOT NULL,
+    [CREATE_DATE]          DATETIME CONSTRAINT [DF_CurrentYear_Admit_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID]   INT      NOT NULL,
+    [UPDATE_DATE]          DATETIME NULL,
+    [UPDATED_BY_USER_ID]   INT      NULL,
+    CONSTRAINT [PK_CurrentYear_Admit] PRIMARY KEY CLUSTERED ([CURRENTYEAR_ADMIT_ID] ASC),
+    CONSTRAINT [FK_CurrentYear_Admit_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_CurrentYear_Admit_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_CurrentYear_Admit_Provider] FOREIGN KEY ([PDTS_PROVIDER_ID]) REFERENCES [dbo].[Provider] ([PDTS_PROVIDER_ID]) ON DELETE CASCADE
+);
+

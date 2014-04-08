@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[Note] (
+    [NOTE_ID]            INT            IDENTITY (1, 1) NOT NULL,
+    [PDTS_PROVIDER_ID]   INT            NOT NULL,
+    [NOTE_TYPE_ID]       INT            NOT NULL,
+    [NOTE]               VARCHAR (1000) NULL,
+    [CREATE_DATE]        DATETIME       CONSTRAINT [DF_Note_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID] INT            NOT NULL,
+    [UPDATE_DATE]        DATETIME       NULL,
+    [UPDATED_BY_USER_ID] INT            NULL,
+    [RECURRING]          BIT            CONSTRAINT [DF_Note_RECURRING] DEFAULT ((0)) NOT NULL,
+    [BUDGET_YEAR]        INT            NULL,
+    CONSTRAINT [PK_Note] PRIMARY KEY CLUSTERED ([NOTE_ID] ASC),
+    CONSTRAINT [FK_Note_Note_Type] FOREIGN KEY ([NOTE_TYPE_ID]) REFERENCES [dbo].[Note_Type] ([NOTE_TYPE_ID]),
+    CONSTRAINT [FK_Note_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Note_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Note_Provider] FOREIGN KEY ([PDTS_PROVIDER_ID]) REFERENCES [dbo].[Provider] ([PDTS_PROVIDER_ID]) ON DELETE CASCADE
+);
+

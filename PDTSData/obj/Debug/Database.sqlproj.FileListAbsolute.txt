@@ -1,9 +1,0 @@
-C:\JCVentures\Synergy\PDTS\PDTSData\bin\Debug\Database.dacpac
-C:\JCVentures\Synergy\PDTS\PDTSData\bin\Debug\Database.dll
-C:\JCVentures\Synergy\PDTS\PDTSData\bin\Debug\Database.pdb
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\Model.xml
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\refactor.xml
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\postdeploy.sql
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\predeploy.sql
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\Database.dll
-C:\JCVentures\Synergy\PDTS\PDTSData\obj\Debug\Database.pdb

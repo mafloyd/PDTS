@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[VolumeCommentType] (
+    [VOLUME_ID]                INT          IDENTITY (1, 1) NOT NULL,
+    [VOLUME_DESC]              VARCHAR (50) NOT NULL,
+    [MONTHLY_COMMENT_REQUIRED] BIT          CONSTRAINT [DF_VolumeCommentType_MONTHLY_COMMENT_REQUIRED] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_VolumeCommentTypes] PRIMARY KEY CLUSTERED ([VOLUME_ID] ASC)
+);
+

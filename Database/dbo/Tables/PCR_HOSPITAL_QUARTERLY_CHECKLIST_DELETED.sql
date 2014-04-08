@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[PCR_HOSPITAL_QUARTERLY_CHECKLIST_DELETED] (
+    [PCR_HOSPITAL_QUARTERLY_CHECKLIST_ID] INT            NOT NULL,
+    [COID]                                VARCHAR (5)    NOT NULL,
+    [SUB_COID]                            VARCHAR (5)    NOT NULL,
+    [ACCOUNT]                             INT            NOT NULL,
+    [QUARTER]                             TINYINT        NOT NULL,
+    [YEAR]                                INT            NOT NULL,
+    [IS_PRE]                              BIT            NOT NULL,
+    [IS_POST]                             BIT            NOT NULL,
+    [VALIDATED]                           BIT            NOT NULL,
+    [VALIDATE_USER_ID]                    INT            NULL,
+    [VALIDATE_USER_DATE]                  DATETIME       NULL,
+    [VALIDATE_USER_NAME]                  VARCHAR (50)   NULL,
+    [REVIEWED]                            BIT            NOT NULL,
+    [REVIEWED_USER_ID]                    INT            NULL,
+    [REVIEWED_USER_DATE]                  DATETIME       NULL,
+    [REVIEWED_USER_NAME]                  VARCHAR (50)   NULL,
+    [CREATE_DATE]                         DATETIME       NOT NULL,
+    [COMMENT]                             VARCHAR (1000) NULL,
+    [COMMENT_USER_ID]                     INT            NULL,
+    [COMMENT_USER_NAME]                   VARCHAR (50)   NULL,
+    [COMMENT_DATE]                        DATETIME       NULL,
+    [DOCUMENT_NAME]                       VARCHAR (100)  NULL,
+    [IS_DOCUMENTATION_REQUIRED]           BIT            NOT NULL,
+    [IS_COMMENT_REQUIRED]                 BIT            NOT NULL,
+    [DELETE_DATE]                         DATETIME       CONSTRAINT [DF_PCR_HOSPITAL_QUARTERLY_CHECKLIST_DELETED_DELETE_DATE] DEFAULT (getdate()) NOT NULL
+);
+
