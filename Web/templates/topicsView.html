@@ -1,0 +1,19 @@
+﻿<div>
+    <div>Message count: {{data.topics.length}}</div>
+    <div>
+        <a href="#/newmessage">Add New Message</a>
+    </div>
+
+    <div class="progress progress-striped active" data-ng-show="isBusy"></div>
+
+    <div data-ng-repeat="i in data.topics">
+        <div>{{i.title}}</div>
+        <div>{{i.created | date: "medium"}}</div>
+        <div>{{i.body}}</div>
+
+        <div data-ng-repeat="r in i.replies">
+            <div class="pull-right">{{r.created | date: "medium"}}</div>
+            <div>{{r.body}}</div>
+        </div>
+    </div>
+</div>
