@@ -541,6 +541,7 @@
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
     <Content Include="templates\newTopicView.html" />
+    <Content Include="templates\singleTopicView.html" />
     <Content Include="templates\topicsView.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmUser.cshtml" />

@@ -12,6 +12,11 @@ module.config(function($routeProvider) {
         templateUrl: "/templates/newTopicView.html"
     });
 
+    $routeProvider.when("/message/:id", {
+        controller: "singleTopicController",
+        templateUrl: "/templates/singleTopicView.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 });
 module.factory("dataService", function($http, $q) {
@@ -61,11 +66,71 @@ module.factory("dataService", function($http, $q) {
         return deferred.promise;
     };
 
+    function _findTopic(id) {
+        var found = null;
+
+        $.each(_topics, function(i, item) {
+            if (item.id == id) {
+                found = item;
+                return false; 
+            }
+        });
+
+        return found;
+    }
+
+    var _getTopicById = function(id) {
+        var deferred = $q.defer();
+
+        if (_isReady()) {
+            var topic = _findTopic(id);
+            if (topic) {
+                deferred.resolve(topic);
+            } else {
+                deferred.reject();
+            }
+        } else {
+            $http.get("/api/", id)
+                .then(function(result) {
+                    //success
+                    if (topic) {
+                        deferred.resolve(topic);
+                    } else {
+                        deferred.reject();
+                    }
+                }, function() {
+                    //error
+                deferred.reject();
+            });
+        }
+
+        return deferred.promise;
+    };
+
+    var _saveReply = function(topic,newReply) {
+        var deferred = $q.defer();
+
+        $http.post("api/")
+            .then(function(result) {
+                //success
+            if (topic.replies == null) topic.replies = [];
+            topic.replies.push(result.data);
+            deferred.resolve(result.data);
+        }, function() {
+            //error]
+            deferred.reject(); 
+        });
+
+        return deferred.promise;
+    }
+
     return {
         topics: _topics,
         getTopics: _getTopics,
         addTopic: _addTopic,
-        isReady: _isReady
+        isReady: _isReady,
+        getTopicById: _getTopicById,
+        saveReply: _saveReply
     };
 });
 
@@ -100,5 +165,30 @@ function newTopicController($scope, $http, $window, dataService) {
                 //Failure
                 alert("Could not save the new topic");
             });
+    };
+}
+
+function singleTopicController($scope, dataService, $window, $routeParams) {
+    $scope.topics = null;
+    $scope.newReply = {};
+
+    dataService.getTopicById($routeParams.id)
+        .then(function(topic) {
+            //Success
+            $scope.topic = topic;
+        }, function() {
+            //Error
+            $window.location = "#/";
+        });
+
+    $scope.addReply = function() {
+        dataService.saveReply($scope.topic, $scope.newReply)
+            .then(function() {
+                //success
+            $scope.newReply.body = "";
+        }, function() {
+                //error
+            alert("Could not save the new reply");
+        });
     };
 }
