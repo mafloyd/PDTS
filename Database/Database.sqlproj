@@ -600,7 +600,6 @@
     <Build Include="dbo\Stored Procedures\sp_report_FacilityCombinedAdmissions.sql" />
     <Build Include="dbo\Stored Procedures\sp_report_FacilityCombinedSurgeries.sql" />
     <Build Include="dbo\Stored Procedures\sp_report_IG_1099.sql" />
-    <Build Include="Scripts\script.sql" />
     <PostDeploy Include="PostDeployment\PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>

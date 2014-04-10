@@ -9,6 +9,8 @@
 *.suo
 *.user
 *.sln.docstates
+*.dbmdl
+*.PDTS.v12.suo
 
 # Build results
 

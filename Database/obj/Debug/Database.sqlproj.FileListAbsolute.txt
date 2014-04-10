@@ -5,3 +5,12 @@ C:\JCVentures\Synergy\PDTS\Database\obj\Debug\postdeploy.sql
 C:\JCVentures\Synergy\PDTS\Database\obj\Debug\predeploy.sql
 C:\JCVentures\Synergy\PDTS\Database\obj\Debug\Database1.dll
 C:\JCVentures\Synergy\PDTS\Database\obj\Debug\Database1.pdb
+C:\GitHub\PDTS\Database\bin\Debug\Database.dacpac
+C:\GitHub\PDTS\Database\obj\Debug\Model.xml
+C:\GitHub\PDTS\Database\obj\Debug\refactor.xml
+C:\GitHub\PDTS\Database\obj\Debug\postdeploy.sql
+C:\GitHub\PDTS\Database\obj\Debug\predeploy.sql
+C:\GitHub\PDTS\Database\obj\Debug\Database1.dll
+C:\GitHub\PDTS\Database\obj\Debug\Database1.pdb
+C:\GitHub\PDTS\Database\bin\Debug\Database1.dll
+C:\GitHub\PDTS\Database\bin\Debug\Database1.pdb
