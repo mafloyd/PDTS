@@ -21,6 +21,8 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+[dD]atabase/obj/
+[dD]atabase/bin/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

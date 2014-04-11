@@ -18,7 +18,7 @@ namespace LifePoint.Web.App_Start
             //TODO: Add argument check here
 
             _controllerSelector = controllerSelector;
-            _routes = routes.SelectMany(rs => rs.Routes).ToArray();
+            _routes = routes.SelectMany(rs => rs.Routes).ToList().AsReadOnly();
         }
 
         public void Register(RouteCollection routes)
