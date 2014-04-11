@@ -155,6 +155,9 @@
     <Compile Include="App_Start\WebApiRoutesRegistrar.cs" />
     <Compile Include="App_Start\WebModule.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\UserAccountsController.cs" />
+    <Compile Include="Areas\Api\Models\UserAccounts\UserAccountRoutes.cs" />
+    <Compile Include="Areas\Api\Models\UserAccounts\UserAccountsParameters.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -498,8 +501,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Api\Controllers\" />
-    <Folder Include="Areas\Api\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
