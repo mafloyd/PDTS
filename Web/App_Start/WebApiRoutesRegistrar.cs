@@ -16,7 +16,8 @@ namespace LifePoint.Web.App_Start
     public class WebApiRoutesRegistrar
     {
         private readonly IHttpControllerSelector _controllerSelector;
-        private readonly IReadOnlyCollection<IWebApiRoute> _routes;
+        //TODO: Research IEnumerable to make sure it is an acceptable replacement of IReadOnlyCollection
+        private readonly IEnumerable<IWebApiRoute> _routes;
 
         public WebApiRoutesRegistrar(IHttpControllerSelector controllerSelector, IEnumerable<IWebApiRoutes> routes)
         {
@@ -58,6 +59,22 @@ namespace LifePoint.Web.App_Start
         }
     }
 
+    public class WebApiRoute
+    {
+        public static WebApiRoute<TController, TParameters> Create<TController, TParameters>(
+            Func<IWebApiParameterFactory<TParameters>, WebApiLocationTemplate> templateSelector)
+            where TController : IHttpController
+        {
+            //TODO: Perform argument check here
+            return new WebApiRoute<TController, TParameters>(
+                templateSelector(new WebApiParameterFactory<TParameters>()),
+                string.Format(CultureInfo.InvariantCulture,
+                    "{0}_{1}",
+                    typeof (TController).Name,
+                    typeof (TParameters).Name));
+        }                
+    }
+
     public class WebApiRoute<TController, TParameters> : IWebApiRoute<TParameters> where TController : IHttpController
     {
         private readonly string _name;
@@ -94,19 +111,6 @@ namespace LifePoint.Web.App_Start
         public string Name
         {
             get { return _name; }
-        }
-
-        public static WebApiRoute<TController, TParameters> Create<TController, TParameters>(
-            Func<IWebApiParameterFactory<TParameters>, WebApiLocationTemplate> templateSelector)
-            where TController : IHttpController
-        {
-            //TODO: Perform argument check here
-            return new WebApiRoute<TController, TParameters>(
-                templateSelector(new WebApiParameterFactory<TParameters>()),
-                string.Format(CultureInfo.InvariantCulture,
-                    "{0}_{1}",
-                    typeof (TController).Name,
-                    typeof (TParameters).Name));
         }
     }
 
@@ -223,7 +227,7 @@ namespace LifePoint.Web.App_Start
 
     public interface IWebApiRoutes
     {
-        IReadOnlyCollection<IWebApiRoute> Routes { get; }
+        IEnumerable<IWebApiRoute> Routes { get; }
     }
 
     public interface IWebApiRoute
