@@ -9,7 +9,7 @@ namespace LifePoint.Web.Areas.Api.Models.UserAccounts
     {
         private readonly WebApiRoute<UserAccountsController, UserAccountsParameters> _userAccountsGet =
             WebApiRoute.Create<UserAccountsController, UserAccountsParameters>(
-                account => WebApiLocationTemplate.Create("api/useraccounts"));
+                account => WebApiLocationTemplate.Create("api/useraccounts/",account.Create(u=> u.UserId)));
 
         public IEnumerable<IWebApiRoute> Routes
         {

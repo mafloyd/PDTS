@@ -59,20 +59,20 @@ namespace LifePoint.Web.App_Start
         }
     }
 
-    public class WebApiRoute
+    public static class WebApiRoute
     {
         public static WebApiRoute<TController, TParameters> Create<TController, TParameters>(
             Func<IWebApiParameterFactory<TParameters>, WebApiLocationTemplate> templateSelector)
             where TController : IHttpController
         {
-            //TODO: Perform argument check here
+            //TODO: Check args here
+
             return new WebApiRoute<TController, TParameters>(
                 templateSelector(new WebApiParameterFactory<TParameters>()),
-                string.Format(CultureInfo.InvariantCulture,
-                    "{0}_{1}",
-                    typeof (TController).Name,
-                    typeof (TParameters).Name));
-        }                
+                string.Format(CultureInfo.InvariantCulture,"{0}_{1}",
+                typeof(TController).Name,
+                typeof(TParameters).Name));
+        }
     }
 
     public class WebApiRoute<TController, TParameters> : IWebApiRoute<TParameters> where TController : IHttpController
@@ -166,11 +166,11 @@ namespace LifePoint.Web.App_Start
             {
                 throw new ArgumentOutOfRangeException();
             }
-            IEnumerable<IGrouping<bool, object>> grouped = paths.Select((path, i) => new {isFragment = i%2 == 0, path})
+            var grouped = paths.Select((path, i) => new {isFragment = i%2 == 0, path})
                 .GroupBy(p => p.isFragment, p => p.path);
 
             var pathSegments = new List<string>();
-            foreach (string segment in grouped.Single(g => g.Key).Select(i => i as string))
+            foreach (var segment in grouped.Single(g => g.Key).Select(i => i as string))
             {
                 if (string.IsNullOrWhiteSpace(segment))
                 {
@@ -180,17 +180,17 @@ namespace LifePoint.Web.App_Start
             }
 
             var parameters = new List<WebApiParameter>();
-            foreach (WebApiParameter parameter in grouped.Where(i => !i.Key)
-                .Single()
-                .Select(p => p as WebApiParameter))
+            if (grouped.Where(i => !i.Key).Count() > 0)
             {
-                if (parameter == null)
+                foreach(var parameter in
+                grouped.SingleOrDefault(i => !i.Key))
                 {
-                    throw new ArgumentOutOfRangeException();
+                    if (parameter != null)
+                    {
+                        parameters.Add(parameter as WebApiParameter);
+                    }
                 }
-                parameters.Add(parameter);
             }
-
             return new WebApiLocationTemplate(
                 new ReadOnlyCollection<string>(pathSegments),
                 new ReadOnlyCollection<WebApiParameter>(parameters)
@@ -219,7 +219,7 @@ namespace LifePoint.Web.App_Start
         public WebApiParameter Create<TProperty>(Expression<Func<TParameters, TProperty>> propertyExpression)
         {
             //TODO: Add arg check
-            var baseName = propertyExpression.Name;
+            var baseName = propertyExpression.Parameters.Single().Name;
             var name = baseName.Substring(0, 1).ToLowerInvariant() + baseName.Substring(1);
             return new WebApiParameter(name, typeof (TProperty));
         }
