@@ -8,6 +8,8 @@ namespace LifePoint.Web.App_Start
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute("AngularViewSections", "App/views/{section}/{viewName}.html", MVC.Angular.GetView());
+            routes.MapRoute("AngularViews","App/views/{viewName}.html", MVC.Angular.GetView());
             routes.MapRoute("AngularRoot", "", MVC.Angular.Index());
         }
     }

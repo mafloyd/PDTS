@@ -2,7 +2,6 @@
 
 namespace LifePoint.Web.Controllers
 {
-
     public partial class AngularController : Controller
     {
         [HttpGet]
@@ -18,7 +17,7 @@ namespace LifePoint.Web.Controllers
         //[AuthorizeWithoutRedirect]
         public virtual ActionResult GetView(string sectionName, string viewName)
         {
-            var pathName = string.IsNullOrWhiteSpace(sectionName) ? viewName : sectionName + "/" + viewName;
+            string pathName = string.IsNullOrWhiteSpace(sectionName) ? viewName : sectionName + "/" + viewName;
             return View("~/App/views/" + pathName + ".cshtml");
         }
     }

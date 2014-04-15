@@ -14,9 +14,9 @@ namespace LifePoint.Web.Areas.Api.Controllers
 
         [HttpGet]
         // GET: api/UserAccounts/5
-        public string Get([FromUri]int id)
+        public IEnumerable<string> Get([FromUri]int id)
         {
-            return "value";
+            return new[] {"value3","value4"};
         }
 
         // POST: api/UserAccounts
