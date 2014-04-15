@@ -1,16 +1,15 @@
 ﻿<div>
-    <div>Message count: {{data.topics.length}}</div>
+    <div>User count: {{data.userAccounts.length}}</div>
     <div>
         <a href="#/newmessage">Add New Message</a>
     </div>
 
     <div class="progress progress-striped active" data-ng-show="isBusy"></div>
 
-    <div data-ng-repeat="i in data.topics">
+    <div data-ng-repeat="i in data.userAccounts">
         <div>
-            <a data-ng-href="#/message/{{i.id}}">{{i.title}}</a>
+            <a data-ng-href="#/addUserToAdGroup/{{i.ntId}}">{{i.lastName}}, {{i.firstName}}</a>
         </div>
         <div>{{i.created | date: "medium"}}</div>
-        <div>{{i.body}}</div>
     </div>
 </div>

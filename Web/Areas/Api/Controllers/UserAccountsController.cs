@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace LifePoint.Web.Areas.Api.Controllers
@@ -7,16 +9,35 @@ namespace LifePoint.Web.Areas.Api.Controllers
     {
         [HttpGet]
         // GET: api/UserAccounts
-        public IEnumerable<string> Index()
+        //TODO: Returning temporary data fakes
+        public IEnumerable<dynamic> Index()
         {
-            return new[] {"value1", "value2"};
+            var returnAccounts = new[]
+            {
+                new
+                {
+                    FirstName = "James",
+                    LastName = "Davis",
+                    Created = new DateTime().Date,
+                    NtId = 1234
+                },
+                new
+                {
+                    FirstName = "Jim",
+                    LastName = "Davis",
+                    Created = new DateTime().Date,
+                    NtId = 4321
+                }
+            };
+
+            return returnAccounts.ToList().AsEnumerable();
         }
 
         [HttpGet]
         // GET: api/UserAccounts/5
-        public IEnumerable<string> Get([FromUri]int id)
+        public IEnumerable<string> Get([FromUri] int id)
         {
-            return new[] {"value3","value4"};
+            return new[] {"value3", "value4"};
         }
 
         // POST: api/UserAccounts

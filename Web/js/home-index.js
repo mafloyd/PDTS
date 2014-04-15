@@ -3,8 +3,8 @@ var module = angular.module("homeIndex", []);
 
 module.config(function($routeProvider) {
     $routeProvider.when("/", {
-        controller: "topicsController",
-        templateUrl: "/templates/topicsView.html"
+        controller: "userAccountsController",
+        templateUrl: "/templates/userAccountsView.html"
     });
 
     $routeProvider.when("/newmessage", {
@@ -20,20 +20,20 @@ module.config(function($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/" });
 });
 module.factory("dataService", function($http, $q) {
-    var _topics = [];
+    var _userAccounts = [];
     var _isInit = false;
 
     var _isReady = function() {
         return _isInit;
     };
-    var _getTopics = function() {
+    var _getUserAccounts = function() {
 
         var deferred = $q.defer();
 
-        $http.get("/api/")
+        $http.get("/api/useraccounts")
             .then(function(result) {
                 //Success
-                angular.copy(result, _topics);
+                angular.copy(result, _userAccounts);
                 _isInit = true;
                 $scope.dataCount = result.data.length;
                 deferred.resolve(); //Can return data optionally here as an argument
@@ -125,8 +125,8 @@ module.factory("dataService", function($http, $q) {
     }
 
     return {
-        topics: _topics,
-        getTopics: _getTopics,
+        userAccounts: _userAccounts,
+        getUserAccounts: _getUserAccounts,
         addTopic: _addTopic,
         isReady: _isReady,
         getTopicById: _getTopicById,
@@ -134,14 +134,14 @@ module.factory("dataService", function($http, $q) {
     };
 });
 
-function topicsController($scope, $http, dataService) {
+function userAccountsController($scope, $http, dataService) {
     $scope.dataCount = 0;
     $scope.data = [];
     $scope.isBusy = false;
 
     if (dataService.isReady() == false) {
         $scope.isBusy = true;
-        dataService.getTopics()
+        dataService.getUserAccounts()
             .then(function() {
                 //Success
             }, function() {
