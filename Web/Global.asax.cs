@@ -21,7 +21,6 @@ namespace LifePoint.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-//            GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(
                 AutofacConfig.GetConfiguredContainer().Resolve<JsonMediaTypeFormatter>());

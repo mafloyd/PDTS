@@ -5,14 +5,16 @@ namespace LifePoint.Web.Areas.Api.Controllers
 {
     public class UserAccountsController : ApiController
     {
+        [HttpGet]
         // GET: api/UserAccounts
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Index()
         {
             return new[] {"value1", "value2"};
         }
 
+        [HttpGet]
         // GET: api/UserAccounts/5
-        public string Get(int id)
+        public string Get([FromUri]int id)
         {
             return "value";
         }

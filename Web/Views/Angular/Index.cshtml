@@ -1,19 +1,13 @@
-﻿@using System.Web.UI.WebControls
-@section SPAViews {
-    @Html.Partial("_Home")
+﻿@{
+    Layout = null;
 }
 
-@{
-    ViewBag.Title = "Home Page";
-    ViewBag.InitModule = "homeIndex";
-}
-
-
-@section Scripts{
-    @*    @Scripts.Render("~/bundles/knockout")*@
-    @*    @Scripts.Render("~/bundles/app")*@
-    <script src="~/js/home-index.js"></script>
-
-}
-
-<div data-ng-view=""></div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LifePoint PDTS</title>
+    </head>
+    <body>
+        <div data-ng-view=""></div>
+    </body>
+</html>

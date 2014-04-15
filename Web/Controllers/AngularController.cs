@@ -3,7 +3,7 @@
 namespace LifePoint.Web.Controllers
 {
 
-    public class AngularController : Controller
+    public partial class AngularController : Controller
     {
         [HttpGet]
         //TODO: Add me back in when ready to leverage security
@@ -11,6 +11,15 @@ namespace LifePoint.Web.Controllers
         public virtual ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        //TODO: Add me back in when ready to leverage security
+        //[AuthorizeWithoutRedirect]
+        public virtual ActionResult GetView(string sectionName, string viewName)
+        {
+            var pathName = string.IsNullOrWhiteSpace(sectionName) ? viewName : sectionName + "/" + viewName;
+            return View("~/App/views/" + pathName + ".cshtml");
         }
     }
 }
