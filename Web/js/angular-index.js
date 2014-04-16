@@ -1,15 +1,20 @@
 ﻿//angular-index.js
-var module = angular.module("angularIndex", []);
+var module = angular.module("angularIndex", ["ngRoute"]);
 
-module.config(function ($routeProvider) {
-    $routeProvider.when("/useraccounts", {
-        controller: "userAccountsController",
-        templateUrl: "/templates/userAccountsView.html"
+module.config(function($routeProvider) {
+    $routeProvider.when("/", {
+        controller: "",
+        templateUrl: "/templates/defaultView.html"
     });
 
-    $routeProvider.when("/newmessage", {
-        controller: "newTopicController",
-        templateUrl: "/templates/newTopicView.html"
+    $routeProvider.when("/searchuseraccounts", {
+        controller: "searchUserAccountsController",
+        templateUrl: "/templates/searchUserAccountsView.html"
+    });
+
+    $routeProvider.when("/edituseraccount/:id", {
+        controller: "editUserAccountController",
+        templateUrl: "/templates/editUserAccountView.html"
     });
 
     $routeProvider.when("/message/:id", {
@@ -20,35 +25,31 @@ module.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/" });
 });
 module.factory("dataService", function($http, $q) {
-    var _userAccounts = [];
-    var _isInit = false;
+    var userAccounts = [];
+    var isInit = false;
 
-    var _isReady = function() {
-        return _isInit;
+    var isReady = function() {
+        return isInit;
     };
-    var _getUserAccounts = function() {
+    var getUserAccounts = function() {
 
         var deferred = $q.defer();
 
         $http.get("/api/useraccounts")
             .then(function(result) {
                 //Success
-                angular.copy(result, _userAccounts);
-                _isInit = true;
-                $scope.dataCount = result.data.length;
-                deferred.resolve(); //Can return data optionally here as an argument
+                angular.copy(result.data, userAccounts);
+                isInit = true;
+                deferred.resolve(result);
             }, function() {
                 //Error
                 deferred.reject();
-            })
-            .then(function() {
-                $scope.isBusy = false;
             });
 
         return deferred.promise;
     };
 
-    var _addTopic = function(newTopic) {
+    var assignToAdGroup = function(userAccount) {
         var deferred = $q.defer();
 
         //Persist to WebAPI
@@ -66,26 +67,26 @@ module.factory("dataService", function($http, $q) {
         return deferred.promise;
     };
 
-    function _findTopic(id) {
+    function findUserAccount(id) {
         var found = null;
 
-        $.each(_topics, function(i, item) {
+        $.each(userAccounts, function(i, item) {
             if (item.id == id) {
                 found = item;
-                return false; 
+                return false;
             }
         });
 
         return found;
     }
 
-    var _getTopicById = function(id) {
+    var getUserAccountById = function(id) {
         var deferred = $q.defer();
 
-        if (_isReady()) {
-            var topic = _findTopic(id);
-            if (topic) {
-                deferred.resolve(topic);
+        if (isReady()) {
+            var userAccount = findUserAccount(id);
+            if (userAccount) {
+                deferred.resolve(userAccount);
             } else {
                 deferred.reject();
             }
@@ -93,61 +94,40 @@ module.factory("dataService", function($http, $q) {
             $http.get("/api/", id)
                 .then(function(result) {
                     //success
-                    if (topic) {
-                        deferred.resolve(topic);
+                    if (result.userAccount) {
+                        deferred.resolve(result.userAccount);
                     } else {
                         deferred.reject();
                     }
                 }, function() {
                     //error
-                deferred.reject();
-            });
+                    deferred.reject();
+                });
         }
 
         return deferred.promise;
     };
 
-    var _saveReply = function(topic,newReply) {
-        var deferred = $q.defer();
-
-        $http.post("api/")
-            .then(function(result) {
-                //success
-            if (topic.replies == null) topic.replies = [];
-            topic.replies.push(result.data);
-            deferred.resolve(result.data);
-        }, function() {
-            //error]
-            deferred.reject(); 
-        });
-
-        return deferred.promise;
-    }
-
     return {
-        userAccounts: _userAccounts,
-        getUserAccounts: _getUserAccounts,
-        addTopic: _addTopic,
-        isReady: _isReady,
-        getTopicById: _getTopicById,
-        saveReply: _saveReply
+        userAccounts: userAccounts,
+        getUserAccounts: getUserAccounts,
+        assignToAdGroup: assignToAdGroup,
+        isReady: isReady,
+        getUserAccountById: getUserAccountById
     };
 });
 
-function angularIndexController($scope) {
-    $scope.greeting = "Hello World!";
-}
-
-function userAccountsController($scope, $http, dataService) {
+function searchUserAccountsController($scope, $http, dataService) {
     $scope.dataCount = 0;
-    $scope.data = [];
+    $scope.data = dataService;
     $scope.isBusy = false;
 
     if (dataService.isReady() == false) {
         $scope.isBusy = true;
         dataService.getUserAccounts()
-            .then(function() {
+            .then(function(results) {
                 //Success
+                $scope.dataCount = results.data.length;
             }, function() {
                 //Error
                 alert("Could not load topics");
@@ -158,24 +138,7 @@ function userAccountsController($scope, $http, dataService) {
     }
 }
 
-function newTopicController($scope, $http, $window, dataService) {
-    $scope.newTopic = {};
-
-    $scope.save = function() {
-        dataService.addTopic($scope.newTopic)
-            .then(function() {
-                //Success
-            }, function() {
-                //Failure
-                alert("Could not save the new topic");
-            });
-    };
-}
-
-function singleTopicController($scope, dataService, $window, $routeParams) {
-    $scope.topics = null;
-    $scope.newReply = {};
-
+function getUserAccountByIdController($scope, $window, $routeParams, dataService) {
     dataService.getTopicById($routeParams.id)
         .then(function(topic) {
             //Success
@@ -184,15 +147,33 @@ function singleTopicController($scope, dataService, $window, $routeParams) {
             //Error
             $window.location = "#/";
         });
+}
 
-    $scope.addReply = function() {
-        dataService.saveReply($scope.topic, $scope.newReply)
+function editUserAccountController($scope, dataService, $window, $routeParams) {
+    $scope.userAccount = {};
+    $scope.userId = $routeParams.id;
+
+    //TODO: Disabled until WebAPI controller Put method is built
+//    getUserById($routeParams.id);
+
+    $scope.save = function() {
+        dataService.assignToAdGroup($scope.newTopic)
             .then(function() {
-                //success
-            $scope.newReply.body = "";
-        }, function() {
-                //error
-            alert("Could not save the new reply");
-        });
+                //Success
+            }, function() {
+                //Failure
+                alert("Could not assign the user successfully");
+            });
     };
+
+    function getUserById(userId) {
+        dataService.getUserAccountById(userId)
+            .then(function(result) {
+                //Success
+                angular.copy(result, $scope.userAccount);
+            }, function() {
+                //Error
+                alert("There was an error retrieving the user account");
+            });
+    }
 }

@@ -10,7 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-/* Example script
-:r .\CPT_HCPCS.ReferenceData.sql
-:r .\CTPCategory.ReferenceData.sql
-*/
+/*Example script*/
+--:r .\CPT_HCPCS.ReferenceData.sql
+--:r .\CTPCategory.ReferenceData.sql
+:r .\dbo.Facility.data.sql
+:r .\dbo.Modules.data.sql

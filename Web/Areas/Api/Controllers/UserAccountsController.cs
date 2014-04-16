@@ -19,14 +19,16 @@ namespace LifePoint.Web.Areas.Api.Controllers
                     FirstName = "James",
                     LastName = "Davis",
                     Created = new DateTime().Date,
-                    NtId = 1234
+                    UserId = 1234,
+                    NtId = @"LPNT\GCI8157"
                 },
                 new
                 {
                     FirstName = "Jim",
                     LastName = "Davis",
                     Created = new DateTime().Date,
-                    NtId = 4321
+                    UserId = 4321,
+                    NtId = @"LPNT\GCI8457"
                 }
             };
 

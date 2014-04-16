@@ -15,13 +15,11 @@ namespace Web
                 "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularJS").Include(
-                "~/Scripts/angular.js"
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-route.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                "~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.validation.js"));
-
+            //TODO: I am probably not being used; remove me when ready to validate
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/sammy-{version}.js",
                 "~/Scripts/app/common.js",

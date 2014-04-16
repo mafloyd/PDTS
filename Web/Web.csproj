@@ -487,9 +487,10 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="templates\newTopicView.html" />
+    <Content Include="templates\defaultView.html" />
+    <Content Include="templates\editUserAccountView.html" />
     <Content Include="templates\singleTopicView.html" />
-    <Content Include="templates\userAccountsView.html" />
+    <Content Include="templates\searchUserAccountsView.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Angular\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
