@@ -1,8 +1,8 @@
-﻿//home-index.js
-var module = angular.module("homeIndex", []);
+﻿//angular-index.js
+var module = angular.module("angularIndex", []);
 
-module.config(function($routeProvider) {
-    $routeProvider.when("/", {
+module.config(function ($routeProvider) {
+    $routeProvider.when("/useraccounts", {
         controller: "userAccountsController",
         templateUrl: "/templates/userAccountsView.html"
     });
@@ -133,6 +133,10 @@ module.factory("dataService", function($http, $q) {
         saveReply: _saveReply
     };
 });
+
+function angularIndexController($scope) {
+    $scope.greeting = "Hello World!";
+}
 
 function userAccountsController($scope, $http, dataService) {
     $scope.dataCount = 0;

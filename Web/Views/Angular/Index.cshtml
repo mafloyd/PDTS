@@ -1,13 +1,8 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Angular Index Page";
+    ViewBag.InitModule = "angularIndex";
 }
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>LifePoint PDTS</title>
-    </head>
-    <body>
-        <div data-ng-view=""></div>
-    </body>
-</html>
+<div data-ng-controller="angularIndexController">
+    <span>Here is my very first AngularJS bound text: {{greeting}}</span>
+</div>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Web
 {
@@ -18,7 +15,7 @@ namespace Web
                 "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularJS").Include(
-                "~/Scripts/angular.min.js"
+                "~/Scripts/angular.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
@@ -32,6 +29,10 @@ namespace Web
                 "~/Scripts/app/app.viewmodel.js",
                 "~/Scripts/app/home.viewmodel.js",
                 "~/Scripts/app/_run.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/user").Include(
+                "~/js/angular-index.js"
+                ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -48,7 +49,8 @@ namespace Web
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            //TODO: Set me back for production please
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

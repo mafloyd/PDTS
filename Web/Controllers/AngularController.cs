@@ -13,6 +13,7 @@ namespace LifePoint.Web.Controllers
         }
 
         [HttpGet]
+        //TODO: I am more than likely not going to get used so delete me when necessary
         //TODO: Add me back in when ready to leverage security
         //[AuthorizeWithoutRedirect]
         public virtual ActionResult GetView(string sectionName, string viewName)
