@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Note_Type] (
+    [NOTE_TYPE_ID]       INT           IDENTITY (1, 1) NOT NULL,
+    [TYPE_TEXT]          NVARCHAR (50) NOT NULL,
+    [CREATE_DATE]        DATETIME      CONSTRAINT [DF_Note_Type_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID] INT           NOT NULL,
+    [UPDATE_DATE]        DATETIME      NULL,
+    [UPDATED_BY_USER_ID] INT           NULL,
+    CONSTRAINT [PK_Note_Type] PRIMARY KEY CLUSTERED ([NOTE_TYPE_ID] ASC),
+    CONSTRAINT [FK_Note_Type_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Note_Type_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

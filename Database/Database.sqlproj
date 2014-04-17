@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{0c864634-4505-4a6e-9e03-77c608be4ec7}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Database1</RootNamespace>
+    <AssemblyName>Database1</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <Containment>None</Containment>
+    <IsNestedTriggersOn>True</IsNestedTriggersOn>
+    <IsTransformNoiseWordsOn>False</IsTransformNoiseWordsOn>
+    <TwoDigitYearCutoff>2049</TwoDigitYearCutoff>
+    <NonTransactedFileStreamAccess>OFF</NonTransactedFileStreamAccess>
+    <TargetRecoveryTimePeriod>0</TargetRecoveryTimePeriod>
+    <TargetRecoveryTimeUnit>SECONDS</TargetRecoveryTimeUnit>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>CHECKSUM</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>110</CompatibilityMode>
+    <AnsiNullDefault>True</AnsiNullDefault>
+    <AnsiNulls>True</AnsiNulls>
+    <AnsiPadding>True</AnsiPadding>
+    <AnsiWarnings>True</AnsiWarnings>
+    <ArithAbort>True</ArithAbort>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
+    <QuotedIdentifier>True</QuotedIdentifier>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>LOCAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <CreateProjectFromDatabaseCompleted>True</CreateProjectFromDatabaseCompleted>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Scripts" />
+    <Folder Include="PostDeployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\will_cross.sql" />
+    <Build Include="dbo\Tables\ProviderContractType.sql" />
+    <Build Include="dbo\Tables\CurrentYear_Admit.sql" />
+    <Build Include="dbo\Tables\PCR_HSC_MANAGED_FSCODE.sql" />
+    <Build Include="dbo\Tables\ig_CorpAudit.sql" />
+    <Build Include="dbo\Tables\ProviderCredential.sql" />
+    <Build Include="dbo\Tables\CurrentYear_Admit_Note_Xref.sql" />
+    <Build Include="dbo\Tables\PDTS_ROLE.sql" />
+    <Build Include="dbo\Tables\ig_CorpAuditStatus.sql" />
+    <Build Include="dbo\Tables\ProviderCredentialing.sql" />
+    <Build Include="dbo\Tables\CurrentYear_Surgery.sql" />
+    <Build Include="dbo\Tables\PDTS_USER_ROLE.sql" />
+    <Build Include="dbo\Tables\ig_Extensions.sql" />
+    <Build Include="dbo\Tables\ProviderCredentialingNote.sql" />
+    <Build Include="dbo\Tables\CurrentYear_Surgery_Note_Xref.sql" />
+    <Build Include="dbo\Tables\PdtsUser.sql" />
+    <Build Include="dbo\Tables\ig_FASB_CashReceipts_Perc.sql" />
+    <Build Include="dbo\Tables\ProviderCredentialType.sql" />
+    <Build Include="dbo\Tables\DailyAdmissions.sql" />
+    <Build Include="dbo\Tables\PENDING_CHANGE.sql" />
+    <Build Include="dbo\Tables\ig_MGMABenchmark.sql" />
+    <Build Include="dbo\Tables\ProviderDepartment.sql" />
+    <Build Include="dbo\Tables\DailyCardiacCathLabProcs.sql" />
+    <Build Include="dbo\Tables\PENDING_CHANGE_APPROVAL.sql" />
+    <Build Include="dbo\Tables\ig_MGMACompType.sql" />
+    <Build Include="dbo\Tables\ProviderHostToPDTSLinkHistory.sql" />
+    <Build Include="dbo\Tables\DailyCensus.sql" />
+    <Build Include="dbo\Tables\PENDING_CHANGE_APPROVAL_MASTER.sql" />
+    <Build Include="dbo\Tables\ig_PracticeType.sql" />
+    <Build Include="dbo\Tables\ProviderMeaningfulUse.sql" />
+    <Build Include="dbo\Tables\DailyDeliveries.sql" />
+    <Build Include="dbo\Tables\PENDING_PROVIDER.sql" />
+    <Build Include="dbo\Tables\ig_Report_RiskSummary.sql" />
+    <Build Include="dbo\Tables\ProviderOverheadDepartment.sql" />
+    <Build Include="dbo\Tables\DailyERAdmits.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_COMPLETION_STATUS.sql" />
+    <Build Include="dbo\Tables\ig_RiskCriteria_Benchmark.sql" />
+    <Build Include="dbo\Tables\ProviderPositionStatus.sql" />
+    <Build Include="dbo\Tables\DailyERVisits.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_ENTRY.sql" />
+    <Build Include="dbo\Tables\ig_RiskStatus.sql" />
+    <Build Include="dbo\Tables\ProviderPractice.sql" />
+    <Build Include="dbo\Tables\DailyMcareAcuteAdmits.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_FREQUENCY.sql" />
+    <Build Include="dbo\Tables\ig_Status.sql" />
+    <Build Include="dbo\Tables\ProviderPracticeAddress.sql" />
+    <Build Include="dbo\Tables\DailyMcareAcutePatDays.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_IDEA.sql" />
+    <Build Include="dbo\Tables\ig_Type.sql" />
+    <Build Include="dbo\Tables\ProviderPracticePhone.sql" />
+    <Build Include="dbo\Tables\DailyObsVisits.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_IDEA_STATUS.sql" />
+    <Build Include="dbo\Tables\ig_Volume_RiskStatus_Definition.sql" />
+    <Build Include="dbo\Tables\ProviderPracticeXref.sql" />
+    <Build Include="dbo\Tables\DailyOPCharges.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_IDEA_TYPE.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_CashRcpt_Check.sql" />
+    <Build Include="dbo\Tables\ProviderRecruitmentStatus.sql" />
+    <Build Include="dbo\Tables\DailyOPVisits.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_MILESTONE.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_CashRcpts.sql" />
+    <Build Include="dbo\Tables\ProviderRegionalDirector.sql" />
+    <Build Include="dbo\Tables\DailyPatientDays.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_MINUTES.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_CashRcpts_Note_Xref.sql" />
+    <Build Include="dbo\Tables\ProviderSeniorDirector.sql" />
+    <Build Include="dbo\Tables\DailySurgeries.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_PAYOFF_QUADRANT.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_Check.sql" />
+    <Build Include="dbo\Tables\ProviderTitle.sql" />
+    <Build Include="dbo\Tables\dept_xref.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_SAVINGS.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_History.sql" />
+    <Build Include="dbo\Tables\Division.sql" />
+    <Build Include="dbo\Tables\ProviderVolumeStatus.sql" />
+    <Build Include="dbo\Tables\PERFORMANCE_IMPROVEMENT_TEAM.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_Notes.sql" />
+    <Build Include="dbo\Tables\ECG_PERFORMER.sql" />
+    <Build Include="dbo\Tables\ProviderVPPhysicianService.sql" />
+    <Build Include="dbo\Tables\Phone_Type.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_NoteTypes.sql" />
+    <Build Include="dbo\Tables\ED_ACTION_PLAN.sql" />
+    <Build Include="dbo\Tables\PSA_POPULATION.sql" />
+    <Build Include="dbo\Tables\Physician_Reason.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_Practice_Managment_Allowance.sql" />
+    <Build Include="dbo\Tables\ED_ACTION_PLAN_CATEGORY.sql" />
+    <Build Include="dbo\Tables\QRM_MEASURE.sql" />
+    <Build Include="dbo\Tables\PHYSICIAN_SCORECARD_CATEGORY.sql" />
+    <Build Include="dbo\Tables\ig_Worksheet_RiskCriteria.sql" />
+    <Build Include="dbo\Tables\ED_ACTION_PLAN_COMMENT.sql" />
+    <Build Include="dbo\Tables\QRM_MEASURE_NOTE.sql" />
+    <Build Include="dbo\Tables\PHYSICIAN_SCORECARD_POINTS.sql" />
+    <Build Include="dbo\Tables\ig_Worksheets.sql" />
+    <Build Include="dbo\Tables\ED_ACTION_PLAN_STATUS.sql" />
+    <Build Include="dbo\Tables\QRM_MEASURE_TYPE.sql" />
+    <Build Include="dbo\Tables\portage_x.sql" />
+    <Build Include="dbo\Tables\INITIAL_PCI_OUTCOME.sql" />
+    <Build Include="dbo\Tables\ED_CASH_PAYMENTS.sql" />
+    <Build Include="dbo\Tables\QRM_MEASURE_TYPE_GROUP.sql" />
+    <Build Include="dbo\Tables\pri_care_strat.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_AFFILIATION.sql" />
+    <Build Include="dbo\Tables\LIFEPOINT_HOSPITAL_MANAGEMENT_SYSTEM.sql" />
+    <Build Include="dbo\Tables\ED_DISCHARGE_STATUS.sql" />
+    <Build Include="dbo\Tables\16947Cross.sql" />
+    <Build Include="dbo\Tables\RACE.sql" />
+    <Build Include="dbo\Tables\16948Cross.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_AGE_BAND.sql" />
+    <Build Include="dbo\Tables\LPNTGLMasterAccts2.sql" />
+    <Build Include="dbo\Tables\ED_DISCHARGED_TO.sql" />
+    <Build Include="dbo\Tables\16949Cross.sql" />
+    <Build Include="dbo\Tables\ServiceFacilityMix.sql" />
+    <Build Include="dbo\Tables\APPLICATION_SETTING.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_CLINIC_TYPES.sql" />
+    <Build Include="dbo\Tables\MASTER_AUDIT.sql" />
+    <Build Include="dbo\Tables\EDM_MANAGING_COMPANY.sql" />
+    <Build Include="dbo\Tables\ServiceLineArea.sql" />
+    <Build Include="dbo\Tables\BudgetAdmitPercentage.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_COMMUNITY_ACCEPTANCE.sql" />
+    <Build Include="dbo\Tables\MASTER_ED_TIER_RANKING.sql" />
+    <Build Include="dbo\Tables\EMPLOYED_PROVIDER_APPROVAL_CHAIN.sql" />
+    <Build Include="dbo\Tables\ServiceLineCategory.sql" />
+    <Build Include="dbo\Tables\BudgetSurgeryPercentage.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_OTHER_RISK.sql" />
+    <Build Include="dbo\Tables\MASTER_ER_LEVEL.sql" />
+    <Build Include="dbo\Tables\EMPLOYED_PROVIDER_APPROVAL_CHAIN_MASTER.sql" />
+    <Build Include="dbo\Tables\ServiceMasterInventory.sql" />
+    <Build Include="dbo\Tables\BudgetThreeYearTotal.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_PRACTICE_REVENUE.sql" />
+    <Build Include="dbo\Tables\MASTER_FINANCIAL_CLASS.sql" />
+    <Build Include="dbo\Tables\EMPLOYED_PROVIDER_CHANGE_NOTIFICATION.sql" />
+    <Build Include="dbo\Tables\SHEATH_SIZE.sql" />
+    <Build Include="dbo\Tables\BudgetYear_Admit.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_RANKING.sql" />
+    <Build Include="dbo\Tables\MASTER_QUARTERLY_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\EMPLOYED_PROVIDER_FIELD_TO_TRACK.sql" />
+    <Build Include="dbo\Tables\SourceToTargetFieldMapping.sql" />
+    <Build Include="dbo\Tables\BudgetYear_Admit_Note_Xref.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_SERVICE_AREA.sql" />
+    <Build Include="dbo\Tables\Material_Physician_Reason.sql" />
+    <Build Include="dbo\Tables\EMPLOYED_PROVIDER_STATUS.sql" />
+    <Build Include="dbo\Tables\Specialty.sql" />
+    <Build Include="dbo\Tables\BudgetYear_Surgery.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_SERVICE_AREA_SUPPLY.sql" />
+    <Build Include="dbo\Tables\Modules.sql" />
+    <Build Include="dbo\Tables\ER_CORE_MEASURE.sql" />
+    <Build Include="dbo\Tables\SPECIALTY_GROUP_TOP_LEVEL.sql" />
+    <Build Include="dbo\Tables\BudgetYear_Surgery_Note_Xref.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_SERVICE_TYPES.sql" />
+    <Build Include="dbo\Tables\Note.sql" />
+    <Build Include="dbo\Tables\ER_CORE_MEASURE_POSSIBLE_POINTS.sql" />
+    <Build Include="dbo\Tables\SPECIALTY_TYPE.sql" />
+    <Build Include="dbo\Tables\CapitalBudget.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_STRATEGY.sql" />
+    <Build Include="dbo\Tables\Note_Type.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_ENTRY.sql" />
+    <Build Include="dbo\Tables\SpecialtyGroup.sql" />
+    <Build Include="dbo\Tables\CapitalBudgetAssetCategory.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_STRATEGY_CATEGORIES.sql" />
+    <Build Include="dbo\Tables\NurseDepartment.sql" />
+    <Build Include="dbo\Tables\StatCodes.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_ENTRY_HISTORY.sql" />
+    <Build Include="dbo\Tables\CapitalBudgetAssetCategory_Vendor_Xref.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_TARGET_TYPES.sql" />
+    <Build Include="dbo\Tables\op_ids.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS.sql" />
+    <Build Include="dbo\Tables\State.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING.sql" />
+    <Build Include="dbo\Tables\CapitalBudgetAssetClass.sql" />
+    <Build Include="dbo\Tables\PRIMARY_CARE_YEARS_IN_PRACTICE.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_DASHBOARD.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS_DEFINITION.sql" />
+    <Build Include="dbo\Tables\Strategy.sql" />
+    <Build Include="dbo\Tables\CapitalBudgetPurpose.sql" />
+    <Build Include="dbo\Tables\ProjectedAdmits.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_DASHBOARD_CROSSWALK.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS_DEFINITION_TARGET.sql" />
+    <Build Include="dbo\Tables\StrategyActionUpdates.sql" />
+    <Build Include="dbo\Tables\CapitalBudgetType.sql" />
+    <Build Include="dbo\Tables\ProjectedSurgeries.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_DASHBOARD_ORDER_TYPE_CROSSWALK.sql" />
+    <Build Include="dbo\Tables\StrategyCategory.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS_GROUP.sql" />
+    <Build Include="dbo\Tables\CapitalDept.sql" />
+    <Build Include="dbo\Tables\Provider.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_FOLLOWUP_PATIENT.sql" />
+    <Build Include="dbo\Tables\StrategyGoalType.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS_POSSIBLE_POINTS.sql" />
+    <Build Include="dbo\Tables\CARDIAC_BIOMARKER_TYPE.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AFFILIATION.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_FOLLOWUP_PATIENT_ATTEMPT.sql" />
+    <Build Include="dbo\Tables\StrategyHistory.sql" />
+    <Build Include="dbo\Tables\ER_DAILY_STATS_STAGE.sql" />
+    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AL_CODE.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_FOLLOWUP_PHY_NOTIFY.sql" />
+    <Build Include="dbo\Tables\ER_FIELD_NOTE.sql" />
+    <Build Include="dbo\Tables\StrategyMeasurableResult.sql" />
+    <Build Include="dbo\Tables\CATH_LAB_EVENT_TYPE.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AUDIT.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_FOLLOWUP_REACH_PATIENT.sql" />
+    <Build Include="dbo\Tables\ER_MONTHLY_DATA.sql" />
+    <Build Include="dbo\Tables\StrategyProductLine.sql" />
+    <Build Include="dbo\Tables\CATH_LAB_EXIT_STATUS.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AUDIT_OCCURANCE.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_FOLLOWUP_UNABLE_REASON.sql" />
+    <Build Include="dbo\Tables\ER_MONTHLY_DATA_DETAIL.sql" />
+    <Build Include="dbo\Tables\StrategyStandard.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_ACS_TYPE.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AUDIT_TYPE.sql" />
+    <Build Include="dbo\Tables\OP_IMAGING_MEASURE.sql" />
+    <Build Include="dbo\Tables\ER_MONTHLY_DATA_STAGE.sql" />
+    <Build Include="dbo\Tables\StrategyStatus.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_ASPIRIN_GIVEN_BY.sql" />
+    <Build Include="dbo\Tables\PROVIDER_AUDITOR.sql" />
+    <Build Include="dbo\Tables\OP_ORDER_TYPE.sql" />
+    <Build Include="dbo\Tables\ER_PAYMENT_TOTALS.sql" />
+    <Build Include="dbo\Tables\SubStrategy.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_ASPIRIN_RECEIVED.sql" />
+    <Build Include="dbo\Tables\PROVIDER_BILL_TYPE.sql" />
+    <Build Include="dbo\Tables\op_strat.sql" />
+    <Build Include="dbo\Tables\ER_TOP_BOX_SCORE.sql" />
+    <Build Include="dbo\Tables\SubStrategyActionUpdate.sql" />
+    <Build Include="dbo\Tables\OperationalCategory.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_DIAGNOSIS.sql" />
+    <Build Include="dbo\Tables\PROVIDER_DIRECTOR.sql" />
+    <Build Include="dbo\Tables\ER_TOP_BOX_SCORE_POSSIBLE_POINTS.sql" />
+    <Build Include="dbo\Tables\SUMMARIZED_STAT_DEFINITIONS.sql" />
+    <Build Include="dbo\Tables\OperationalInitiative.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_DIAGNOSIS_OTHER.sql" />
+    <Build Include="dbo\Tables\Provider_History.sql" />
+    <Build Include="dbo\Tables\ER_UPFRONT_COLLECTION.sql" />
+    <Build Include="dbo\Tables\SUMMARIZED_STATS.sql" />
+    <Build Include="dbo\Tables\PROVIDER_LINE_OF_BUSINESS.sql" />
+    <Build Include="dbo\Tables\OperationalInitiativeMonthlyEntry.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_EMS_TYPE.sql" />
+    <Build Include="dbo\Tables\Extract.sql" />
+    <Build Include="dbo\Tables\Surgical_Type.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PENDING_CHANGES.sql" />
+    <Build Include="dbo\Tables\OperationalInitiativeStatus.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_FACILITY.sql" />
+    <Build Include="dbo\Tables\ExtractIgnorePattern.sql" />
+    <Build Include="dbo\Tables\SURVEY.sql" />
+    <Build Include="dbo\Tables\Provider_Phone.sql" />
+    <Build Include="dbo\Tables\ops_strat.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_FACILITY_AGREE_TO_EMS_STEMI.sql" />
+    <Build Include="dbo\Tables\PARALLON_SERVICE.sql" />
+    <Build Include="dbo\Tables\Facility.sql" />
+    <Build Include="dbo\Tables\SURVEY_ANSWER.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_ADDRESS_XREF.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_FIBRI_GIVEN.sql" />
+    <Build Include="dbo\Tables\PARALLON_SERVICE_GL_ACCOUNT.sql" />
+    <Build Include="dbo\Tables\FACILITY_MONTHLY_AUDIT.sql" />
+    <Build Include="dbo\Tables\SURVEY_CATEGORY.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_MANAGEMENT_SYSTEM.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_FIBRI_NOT_GIVEN_REASON.sql" />
+    <Build Include="dbo\Tables\PCR_ALL_COIDS.sql" />
+    <Build Include="dbo\Tables\FACILITY_QUARTERLY_AUDIT.sql" />
+    <Build Include="dbo\Tables\SURVEY_CYCLE.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_PHONE_XREF.sql" />
+    <Build Include="dbo\Tables\PCR_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_FIRST_TYPE_CONTACT.sql" />
+    <Build Include="dbo\Tables\FACILITY_QUARTERLY_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\SURVEY_QUESTION.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_STATUS.sql" />
+    <Build Include="dbo\Tables\PCR_COID_FILTER.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_MASTER_SYMPTOM.sql" />
+    <Build Include="dbo\Tables\FacilityCapital.sql" />
+    <Build Include="dbo\Tables\SURVEY_QUESTION_TARGET.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_STRUCTURE.sql" />
+    <Build Include="dbo\Tables\PCR_FSCODE_FILTER.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_MEASURE.sql" />
+    <Build Include="dbo\Tables\FIRST_RESPONDER_TYPE.sql" />
+    <Build Include="dbo\Tables\SurveyAnswer.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_STRUCTURE_AGREEMENT_TYPE.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_MONTHLY_ACCOUNT_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_MODE_OF_ARRIVAL.sql" />
+    <Build Include="dbo\Tables\GENDER.sql" />
+    <Build Include="dbo\Tables\tblLPNTGLMasterAccts.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PRACTICE_STRUCTURE_SPACE.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_MONTHLY_CHECKLIST.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_PATIENT.sql" />
+    <Build Include="dbo\Tables\GL_DEPARTMENT.sql" />
+    <Build Include="dbo\Tables\TBUT_ACCOUNT_RANGE.sql" />
+    <Build Include="dbo\Tables\PROVIDER_PROVIDER_PRACTICE_ADDRESS_XREF.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_MONTHLY_CHECKLIST_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_PATIENT_MEASURE.sql" />
+    <Build Include="dbo\Tables\GL_SUB_ACCOUNT.sql" />
+    <Build Include="dbo\Tables\User_Division_Xref.sql" />
+    <Build Include="dbo\Tables\PROVIDER_REQUIREMENT.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_MONTHLY_UPLOAD.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_PATIENT_STATUS.sql" />
+    <Build Include="dbo\Tables\GLCrossWalk.sql" />
+    <Build Include="dbo\Tables\User_Facility_Xref.sql" />
+    <Build Include="dbo\Tables\PROVIDER_SENIOR_DIRECTOR_FACILITY_XREF.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_QUARTERLY_ACCOUNT_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\CHEST_PAIN_PATIENT_SYMPTOM.sql" />
+    <Build Include="dbo\Tables\GMENAC_RATIO.sql" />
+    <Build Include="dbo\Tables\User_Module_Xref.sql" />
+    <Build Include="dbo\Tables\PROVIDER_STAFF_STATUS.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_QUARTERLY_CHECKLIST.sql" />
+    <Build Include="dbo\Tables\ClinicDepartment.sql" />
+    <Build Include="dbo\Tables\Holiday.sql" />
+    <Build Include="dbo\Tables\User_StrategyCategory_Xref.sql" />
+    <Build Include="dbo\Tables\PROVIDER_TYPE.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_QUARTERLY_CHECKLIST_CERTIFICATION.sql" />
+    <Build Include="dbo\Tables\Cogroup.sql" />
+    <Build Include="dbo\Tables\ig_AR_RiskStatus_Definition.sql" />
+    <Build Include="dbo\Tables\Vendor.sql" />
+    <Build Include="dbo\Tables\PROVIDER_YEARS_EXPERIENCE_REQUIRED.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_QUARTERLY_CHECKLIST_DELETED.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\PCR_HOSPITAL_QUARTERLY_UPLOAD.sql" />
+    <Build Include="dbo\Tables\ig_BillingSystems.sql" />
+    <Build Include="dbo\Tables\VolumeCommentType.sql" />
+    <Build Include="dbo\Tables\ProviderContract.sql" />
+    <Build Include="dbo\Tables\CPOE_REPORT.sql" />
+    <Build Include="dbo\Tables\PCR_HSC_MANAGED_ACCOUNT.sql" />
+    <Build Include="dbo\Tables\ig_Collection_RiskStatus_Definition.sql" />
+    <Build Include="dbo\Functions\fn_ED_GetEDStatTotalByDivision.sql" />
+    <Build Include="dbo\Functions\ufn_AgeCalc.sql" />
+    <Build Include="dbo\Functions\ufn_GetDaysInMonth.sql" />
+    <Build Include="dbo\Functions\ufn_IsLeapYear.sql" />
+    <Build Include="dbo\Functions\ufn_QRMMonthlyValue.sql" />
+    <Build Include="dbo\Functions\ufn_ReturnSummedERDailyEntry.sql" />
+    <Build Include="dbo\Functions\ufn_SummarizedStatMonthlyValue.sql" />
+    <Build Include="dbo\Functions\Split.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IG_1099_Cash.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IG_DataDump.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IG_MostRecentCheck.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IGAlert.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IGARReconBalanceData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IGEnrollmentStatusPending.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Report_IGViewAdvanceData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Report_IGViewCashReceiptsData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_LeftDocs.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_LeftDocs2.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Report_MaterialDocs.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MaterialDocsSummary.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MaterialDocsSummary_ByMaterialCategory.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MaterialDocsSummary_BySpecialty.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgery.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgeryByDivision.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDAdmitsMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgeryByDivisionThreeYearHistory.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDAdmitsQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgeryQTD.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDAdmitsYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgeryYTD.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDSurgeriesMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MonthlySurgeryYTDByDivision.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDSurgeriesQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_MSD.sql" />
+    <Build Include="dbo\Stored Procedures\GetCOIDSurgeriesYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_op_imaging_dashboard.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearAdmitsMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_OP_NoShow_Stats.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearAdmitsQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_OpInits.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearAdmitsYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_OpInits_ByDivision.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearSurgeriesMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_OpInits_Corporate.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearSurgeriesQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PCR_AccountChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderBudgetYearSurgeriesYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PCR_Division_MonthlyAccountChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearAdmitsMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PCR_Division_QuarterlyAccountChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearAdmitsQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PCR_QuarterlyAccountChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearAdmitsYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PCR_QuarteryControlChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearSurgeriesMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PI_ApprovedStatusReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearSurgeriesQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_PI_TeamMinutesReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderCurrentYearSurgeriesYTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ProjectedAdmissionsBySpecialty.sql" />
+    <Build Include="dbo\Stored Procedures\GetProviderDetailForLeftDocsReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_provider_practice.sql" />
+    <Build Include="dbo\Stored Procedures\ig_CreateRiskSummaryReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ProviderReportCard.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_BudgetYear_Admit.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ProviderReportCardDivisionSummary.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_BudgetYear_Surgery.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_QRM_Audit.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_CurrentYear_Admit.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_QRM_SingleFacility.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_CurrentYear_Surgery.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_SurgeriesByMonth.sql" />
+    <Build Include="dbo\Stored Procedures\sp_budget_CreateBudgetYearAdmits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_SurveyAnswer_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\sp_budget_CreateBudgetYearSurgeries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_utility_CreateStubBudgetEntries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_budget_CreateProjectedAdmits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_budget_CreateProjectedSurgeries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_chestpain_ems_summary.sql" />
+    <Build Include="dbo\Stored Procedures\sp_daily_employed_provider_status_update.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ER_DAILY_STATS_Insert_From_ER_DAILY_STATS_STAGE.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ER_DAILY_STATS_STAGE_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ER_MergeMonthlyData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ER_MONTHLY_DATA_STAGE_Cleanup.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ER_MONTHLY_DATA_STAGE_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ExecutiveDailyMonitor_Admissions.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ExecutiveDailyMonitor_Census.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ExecutiveDailyMonitor_ERAdmits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ExecutiveDailyMonitor_ERVisits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ExecutiveDailyMonitor_Surgeries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetThreeYearSurgicalTotalsBySurgicalType.sql" />
+    <Build Include="dbo\Stored Procedures\sp_insert_op_imaging_dashboard.sql" />
+    <Build Include="dbo\Stored Procedures\sp_insert_op_imaging_followup_patient.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Monthly_CreateERStats.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Monthly_StandardStrategyInsertion.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PCR_CertificationReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PCR_ControlChecklistCertificationReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PCR_MonthlyControlChecklist.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PhysicianSatisfactionDataDumpReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_AdmissionsQTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_AdmitsByCoidYear.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_BudgetAdmissions.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_BudgetedAdmissionsBySpecialty.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_BudgetSurgery.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_BudgetSurgeryDetail.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_CEOReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_CEOReport_ByFacility.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_CEOReportByCategory.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_Chart_DetailData_ByDivision.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_chest_pain_extract.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_complete_employed_provider_extract.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_CountLeftDocsPerFacility.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyEntriesMTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashAdmissions.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashCathLabProcs.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashCensus.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashDeliveries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashERAdmits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashERVisits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashMcareAcuteAdmissions.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashMcareAcutePatDays.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashObsVisits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashOPCharges.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashOPVisits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailyFlashSurgeries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailySummary.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailySummaryData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_DailySummaryFacility.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_Division_PCR_MonthlyControlChecklistDump.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_Division_PCR_QuarterlyControlChecklistDump.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_ActionPlans.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_DailyExecutiveBriefing.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_Patient_Analysis.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_Patient_Analysis_VisitsByFinClass.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_Patient_Analysis_VisitsByLevel.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_PatientAnalysis_ObsVisits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_PatientAnalysis_ObsVisits2.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ED_PatientAnalysisMTD_YTD.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDDailyAudit.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDDailyVisitsAdmits.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDDivisionYTDByFacility.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDGetTargetValues.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDMonthlySingleFacility.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDPhysicianScoreCardEfficientPatientCare.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDPhysicianScoreCardHighQuality.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDPhysicianScoreCardSatisfaction.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EDVisitsAndAdmitsMonthly.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EmployedProviderChanges.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_EmployedProviders.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ER_SingleFacilityUpfrontCollections.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ER_UpfrontCollections.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_BasicStatistics.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_BasicStatistics2.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_CoreMeasures.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_EDRankingByTier.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_EDSatisfaction.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_FacilityList.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_LengthOfStay.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_RiskManagement.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Report_ERDivisionRollup_SingleFaclityEDVisitsPivot.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionRollup_SingleStat.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionSF_BasicStatistics.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionSF_CoreMeasures.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_ERDivisionSF_Satisfaction.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_FacilityCombinedAdmissions.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_FacilityCombinedSurgeries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_report_IG_1099.sql" />
+    <PostDeploy Include="PostDeployment\PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="local.publish.xml" />
+    <None Include="Scripts\dbo.PdtsUser.data.sql" />
+    <None Include="Scripts\dbo.User_Facility_Xref.data.sql" />
+    <None Include="Scripts\dbo.User_Module_Xref.data.sql" />
+    <None Include="PostDeployment\dbo.Facility.data.sql" />
+    <None Include="PostDeployment\dbo.Modules.data.sql" />
+  </ItemGroup>
+</Project>

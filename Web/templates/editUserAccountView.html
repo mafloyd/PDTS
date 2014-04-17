@@ -1,0 +1,22 @@
+﻿<h3>Edit User Account</h3>
+<form name="userEditForm" novalidate data-ng-submit="save()">
+    <fieldset>
+        <!--This demonstrates 2 way binding-->
+        <div>
+            <label for="ntId">NT ID</label>
+            <input name="ntId" type="text" data-ng-model="userAccount.ntId" required data-ng-minlength="5" />
+            <span class="error" data-ng-show="userEditForm.ntId.$error.required">*</span>
+            <span class="error" data-ng-show="userEditForm.ntId.$error.minlength">Minimum 5 characters</span>
+        </div>
+        <div>
+            <label for="userNotes">User Notes</label>
+            <textarea name="userNotes" rows="5" cols="30" data-ng-model="userAccount.userNotes" required data-ng-minlength="15"></textarea>
+            <span class="error" data-ng-show="userEditForm.userNotes.$error.required">*</span>
+            <span class="error" data-ng-show="userEditForm.userNotes.$error.minlength">Minimum 15 characters</span>
+        </div>
+        <div>
+            <input type="submit" class="btn" value="Save" data-ng-disabled="userEditForm.$invalid" />
+            <a href="#/" class="btn">Cancel</a>
+        </div>
+    </fieldset>
+</form>

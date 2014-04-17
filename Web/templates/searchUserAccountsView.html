@@ -1,0 +1,16 @@
+﻿<h3>Search User Accounts</h3>
+<div>
+    <div>User count: {{dataCount}}</div>
+    <div>
+        <a href="#/newmessage">Add New Message</a>
+    </div>
+
+    <div class="progress progress-striped active" data-ng-show="isBusy"></div>
+
+    <div data-ng-repeat="i in data.userAccounts">
+        <div>
+            <a data-ng-href="#/edituseraccount/{{i.userId}}">{{i.lastName}}, {{i.firstName}}</a>
+        </div>
+        <div>{{i.created | date: "medium"}}</div>
+    </div>
+</div> 

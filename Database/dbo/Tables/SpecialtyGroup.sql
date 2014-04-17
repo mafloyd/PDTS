@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[SpecialtyGroup] (
+    [SPECIALTY_GROUP_ID] INT          IDENTITY (1, 1) NOT NULL,
+    [NAME]               VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_SpecialtyGroup] PRIMARY KEY CLUSTERED ([SPECIALTY_GROUP_ID] ASC)
+);
+

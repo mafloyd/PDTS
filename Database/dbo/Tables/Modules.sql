@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Modules] (
+    [MODULE_ID] INT          IDENTITY (1, 1) NOT NULL,
+    [NAME]      VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_Modules] PRIMARY KEY CLUSTERED ([MODULE_ID] ASC)
+);
+

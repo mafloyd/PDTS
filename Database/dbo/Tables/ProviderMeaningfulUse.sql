@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[ProviderMeaningfulUse] (
+    [PROVIDER_MEANINGFUL_USE_ID]          INT          IDENTITY (1, 1) NOT NULL,
+    [PDTS_PROVIDER_ID]                    INT          NOT NULL,
+    [IS_REGISTERED]                       BIT          CONSTRAINT [DF_ProviderMeaningfulUse_IS_REGISTERED] DEFAULT ((0)) NOT NULL,
+    [REGISTRATION_NUMBER]                 VARCHAR (10) NULL,
+    [CREATE_DATE]                         DATETIME     CONSTRAINT [DF_ProviderMeaningfulUse_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID]                  INT          NOT NULL,
+    [UPDATE_DATE]                         DATETIME     NULL,
+    [UPDATED_BY_USER_ID]                  INT          NULL,
+    [IS_PARTICIPATING]                    BIT          CONSTRAINT [DF_ProviderMeaningfulUse_IS_PARTICIPATING] DEFAULT ((0)) NOT NULL,
+    [MEDICARE_MEANINGFUL_USE]             BIT          CONSTRAINT [DF_ProviderMeaningfulUse_MEDICARE_MEANINGFUL_USE] DEFAULT ((0)) NOT NULL,
+    [MEDICAID_MEANINGFUL_USE]             BIT          CONSTRAINT [DF_ProviderMeaningfulUse_MEDICAID_MEANINGUL_USE] DEFAULT ((0)) NOT NULL,
+    [IN_HPSA]                             BIT          CONSTRAINT [DF_ProviderMeaningfulUse_IN_HPSA] DEFAULT ((0)) NOT NULL,
+    [PARTICIPATED_IN_CMS_ESCRIBE]         BIT          CONSTRAINT [DF_ProviderMeaningfulUse_PARTICIPATED_IN_CMS_ESCRIBE] DEFAULT ((0)) NOT NULL,
+    [YEAR_ONE_ATTESTATION_PERIOD_START]   DATETIME     NULL,
+    [YEAR_ONE_ATTESTATION_COMPLETED_DATE] DATETIME     NULL,
+    [PREV_MU_USER_YEAR_COMPLETED]         INT          NULL,
+    [ACCESS_REQUEST_NUMBER]               VARCHAR (15) NULL,
+    [RISK_ASSESSMENT_COMPLETE_DATE]       DATETIME     NULL,
+    [ATTESTED_FOR_MU_DATE]                DATETIME     NULL,
+    [CASH_RECEIVED]                       MONEY        NULL,
+    CONSTRAINT [PK_ProviderMeaningfulUse] PRIMARY KEY CLUSTERED ([PROVIDER_MEANINGFUL_USE_ID] ASC),
+    CONSTRAINT [FK_ProviderMeaningfulUse_CreateUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_ProviderMeaningfulUse_Provider] FOREIGN KEY ([PDTS_PROVIDER_ID]) REFERENCES [dbo].[Provider] ([PDTS_PROVIDER_ID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_ProviderMeaningfulUse_UpdateUser] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

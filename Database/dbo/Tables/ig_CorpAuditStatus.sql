@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ig_CorpAuditStatus] (
+    [CASTATUS_ID]   INT          IDENTITY (1, 1) NOT NULL,
+    [CASTATUS_DESC] VARCHAR (50) NULL,
+    CONSTRAINT [PK_igCorpAuditStatus] PRIMARY KEY CLUSTERED ([CASTATUS_ID] ASC)
+);
+

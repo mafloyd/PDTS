@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[ER_MONTHLY_DATA] (
+    [ER_DATA_ID]              INT          IDENTITY (1, 1) NOT NULL,
+    [COID]                    VARCHAR (5)  NOT NULL,
+    [YEAR_OF_DISCHARGE_DATE]  INT          NOT NULL,
+    [MONTH_OF_DISCHARGE_DATE] INT          NOT NULL,
+    [FINANCIAL_CLASS_ID]      INT          NULL,
+    [PAT_TYPE]                VARCHAR (5)  NOT NULL,
+    [PAT_TYPE_POS1]           VARCHAR (1)  NOT NULL,
+    [PAT_NUM]                 VARCHAR (50) NOT NULL,
+    [PAT_BIRTH_DATE]          DATETIME     NULL,
+    [AGE]                     INT          NOT NULL,
+    [ADMIT_TIME]              INT          NOT NULL,
+    [NUMBER_OF_CASES]         INT          NOT NULL,
+    [OBSERVATION]             BIT          CONSTRAINT [DF_ER_DATA_OBSERVATION] DEFAULT ((0)) NOT NULL,
+    [DISCHARGE_DATE]          DATETIME     NULL,
+    CONSTRAINT [PK_ER_DATA] PRIMARY KEY CLUSTERED ([ER_DATA_ID] ASC),
+    CONSTRAINT [FK_ER_DATA_MASTER_FINANCIAL_CLASS] FOREIGN KEY ([FINANCIAL_CLASS_ID]) REFERENCES [dbo].[MASTER_FINANCIAL_CLASS] ([FINANCIAL_CLASS_ID])
+);
+

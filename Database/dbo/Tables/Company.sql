@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Company] (
+    [COMPANY_ID]         INT          NOT NULL,
+    [SHORT_NAME]         VARCHAR (50) NOT NULL,
+    [LONG_NAME]          VARCHAR (50) NOT NULL,
+    [CREATE_DATE]        DATETIME     CONSTRAINT [DF_Company_CREATE_DATE] DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY_USER_ID] INT          NOT NULL,
+    [UPDATE_DATE]        DATETIME     NULL,
+    [UPDATED_BY_USER_ID] INT          NULL,
+    CONSTRAINT [PK_Company] PRIMARY KEY CLUSTERED ([COMPANY_ID] ASC),
+    CONSTRAINT [FK_Company_PdtsUser] FOREIGN KEY ([CREATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID]),
+    CONSTRAINT [FK_Company_PdtsUser1] FOREIGN KEY ([UPDATED_BY_USER_ID]) REFERENCES [dbo].[PdtsUser] ([USER_ID])
+);
+

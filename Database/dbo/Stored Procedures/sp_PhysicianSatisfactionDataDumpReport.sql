@@ -1,0 +1,55 @@
+﻿CREATE PROCEDURE [dbo].[sp_PhysicianSatisfactionDataDumpReport]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT f.NAME AS facility,
+		p.last_name, 
+		p.first_name, 
+		pt.name AS CREDENTIAL,
+		ptype.name AS TYPE,
+		pss.NAME AS staff_status,
+		pps.name AS position_status,
+		p.active,
+		p.PRIMARY_ADDRESS_LINE1,
+		p.PRIMARY_ADDRESS_LINE2,
+		p.PRIMARY_ADDRESS_CITY,
+		s.SHORT_NAME AS STATE,
+		p.PRIMARY_ADDRESS_ZIP,
+		p.PRIMARY_PHONE_NUMBER, 
+		sp.LONG_NAME AS specialty,
+		p.EMAIL_ADDRESS,
+		pac.NAME AS al_code,
+		p.SATISFACTION_SURVEY_PASSWORD,
+		p.gender,
+		p.DOB,
+		p.EMPLOYED,
+		p.SATISFACTION_SURVEY_MATCH_ID
+	FROM Facility f WITH (NOLOCK)
+		JOIN Provider p WITH (NOLOCK)
+			ON f.COID = p.COID
+
+		LEFT JOIN dbo.ProviderTitle pt WITH (NOLOCK)
+			ON p.PROVIDER_TITLE_ID = pt.PROVIDER_TITLE_ID
+
+		LEFT JOIN PROVIDER_TYPE ptype WITH (NOLOCK)
+			ON p.PROVIDER_TYPE_ID = ptype.PROVIDER_TYPE_ID
+
+		LEFT JOIN dbo.PROVIDER_STAFF_STATUS pss WITH (NOLOCK)
+			ON p.PROVIDER_STAFF_STATUS_ID = pss.PROVIDER_STAFF_STATUS_ID
+
+		LEFT JOIN dbo.ProviderPositionStatus pps WITH (NOLOCK)
+			ON p.PROVIDER_POSITION_STATUS_ID = pps.PROVIDER_POSITION_STATUS_ID
+
+		LEFT JOIN State s WITH (NOLOCK)
+			ON p.PRIMARY_ADDRESS_STATE_ID = s.STATE_ID
+
+		LEFT JOIN Specialty sp WITH (NOLOCK)
+			ON p.SPECIALTY_ID = sp.SPECIALTY_ID
+
+		LEFT JOIN dbo.PROVIDER_AL_CODE pac WITH (NOLOCK)
+			ON p.PROVIDER_AL_CODE_ID = pac.PROVIDER_AL_CODE_ID
+	WHERE p.INCLUDE_IN_SAT_SURVEY = 1
+	ORDER BY f.name, p.last_name, p.first_name, p.middle_name  
+END
+
