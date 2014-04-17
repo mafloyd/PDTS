@@ -1,8 +1,9 @@
 ﻿using System;
 using Autofac;
 using LifePoint.ModuleRegistration;
+using LifePoint.Web;
 
-namespace LifePoint.Web.App_Start
+namespace Web
 {
     public class AutofacConfig
     {

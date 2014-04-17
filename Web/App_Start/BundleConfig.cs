@@ -19,15 +19,6 @@ namespace Web
                 "~/Scripts/angular-route.js"
                 ));
 
-            //TODO: I am probably not being used; remove me when ready to validate
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/sammy-{version}.js",
-                "~/Scripts/app/common.js",
-                "~/Scripts/app/app.datamodel.js",
-                "~/Scripts/app/app.viewmodel.js",
-                "~/Scripts/app/home.viewmodel.js",
-                "~/Scripts/app/_run.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/user").Include(
                 "~/js/angular-index.js"
                 ));

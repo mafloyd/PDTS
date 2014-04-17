@@ -1,1 +1,1 @@
-﻿<%@Application CodeBehind="Global.asax.cs" Inherits="LifePoint.Web.MvcApplication" Language="C#" %>
+﻿<%@Application CodeBehind="Global.asax.cs" Inherits="Web.MvcApplication" Language="C#" %>

@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
-using LifePoint.Web.App_Start;
+using Web;
 
 namespace LifePoint.Web.Areas.Api
 {

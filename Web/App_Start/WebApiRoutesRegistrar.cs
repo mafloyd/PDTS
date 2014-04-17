@@ -8,10 +8,9 @@ using System.Linq.Expressions;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using System.Web.Http.Routing;
 using System.Web.Routing;
 
-namespace LifePoint.Web.App_Start
+namespace Web
 {
     public class WebApiRoutesRegistrar
     {
@@ -31,7 +30,7 @@ namespace LifePoint.Web.App_Start
         {
             //TODO: Add argument check 
 
-            foreach (IWebApiRoute route in _routes)
+            foreach (var route in _routes)
             {
                 Register(routes, route);
             }
@@ -39,7 +38,7 @@ namespace LifePoint.Web.App_Start
 
         private void Register(RouteCollection routes, IWebApiRoute route)
         {
-            HttpControllerDescriptor controller =
+            var controller =
                 _controllerSelector.GetControllerMapping()
                     .Values.FirstOrDefault(item => item.ControllerType == route.ControllerType);
 
@@ -49,7 +48,7 @@ namespace LifePoint.Web.App_Start
                                                        route.ControllerType.FullName);
             }
 
-            string controllerName = controller.ControllerName;
+            var controllerName = controller.ControllerName;
 
             routes.MapHttpRoute(
                 route.Name,
@@ -69,9 +68,9 @@ namespace LifePoint.Web.App_Start
 
             return new WebApiRoute<TController, TParameters>(
                 templateSelector(new WebApiParameterFactory<TParameters>()),
-                string.Format(CultureInfo.InvariantCulture,"{0}_{1}",
-                typeof(TController).Name,
-                typeof(TParameters).Name));
+                string.Format(CultureInfo.InvariantCulture, "{0}_{1}",
+                    typeof (TController).Name,
+                    typeof (TParameters).Name));
         }
     }
 
@@ -86,11 +85,6 @@ namespace LifePoint.Web.App_Start
 
             _template = template;
             _name = name;
-        }
-
-        public Uri GetLocation(UrlHelper url, TParameters parameters)
-        {
-            throw new NotImplementedException();
         }
 
         public WebApiLocationTemplate Template
@@ -117,23 +111,16 @@ namespace LifePoint.Web.App_Start
     public class WebApiParameter
     {
         private readonly string _name;
-        private readonly Type _parameterType;
 
         public WebApiParameter(string name, Type parameterType)
         {
             //TODO: Add args check
             _name = name;
-            _parameterType = parameterType;
         }
 
         public string Name
         {
             get { return _name; }
-        }
-
-        public Type ParameterType
-        {
-            get { return _parameterType; }
         }
     }
 
@@ -142,7 +129,7 @@ namespace LifePoint.Web.App_Start
         private readonly ReadOnlyCollection<string> _fragments;
         private readonly ReadOnlyCollection<WebApiParameter> _paths;
 
-        public WebApiLocationTemplate(ReadOnlyCollection<string> fragments, ReadOnlyCollection<WebApiParameter> paths)
+        private WebApiLocationTemplate(ReadOnlyCollection<string> fragments, ReadOnlyCollection<WebApiParameter> paths)
         {
             //TODO: Add arg checks here
 
@@ -180,16 +167,11 @@ namespace LifePoint.Web.App_Start
             }
 
             var parameters = new List<WebApiParameter>();
-            if (grouped.Where(i => !i.Key).Count() > 0)
+            if (grouped.Any(i => !i.Key))
             {
-                foreach(var parameter in
-                grouped.SingleOrDefault(i => !i.Key))
-                {
-                    if (parameter != null)
-                    {
-                        parameters.Add(parameter as WebApiParameter);
-                    }
-                }
+                parameters.AddRange(from parameter in grouped.SingleOrDefault(i => !i.Key)
+                    where parameter != null
+                    select parameter as WebApiParameter);
             }
             return new WebApiLocationTemplate(
                 new ReadOnlyCollection<string>(pathSegments),
@@ -200,7 +182,7 @@ namespace LifePoint.Web.App_Start
         public string AsString()
         {
             var strings = _fragments.Zip(_paths.Select(p => p.Name), (f, p) => new[] {f, "{", p, "}"})
-                            .SelectMany(_ => _);
+                .SelectMany(_ => _);
             if (_fragments.Count == _paths.Count + 1)
             {
                 strings = strings.Concat(new[] {_fragments[_fragments.Count - 1]});
@@ -234,12 +216,10 @@ namespace LifePoint.Web.App_Start
     {
         WebApiLocationTemplate Template { get; }
         Type ControllerType { get; }
-        Type ParametersType { get; }
         string Name { get; }
     }
 
     public interface IWebApiRoute<in TParameters> : IWebApiRoute
     {
-        Uri GetLocation(UrlHelper url, TParameters parameters);
     }
 }

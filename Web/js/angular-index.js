@@ -53,7 +53,7 @@ module.factory("dataService", function($http, $q) {
         var deferred = $q.defer();
 
         //Persist to WebAPI
-        $http.post("/api/", newTopic)
+        $http.post("/api/", userAccount)
             .then(function(result) {
                 //success
                 var newlyCreatedTopic = result.data;

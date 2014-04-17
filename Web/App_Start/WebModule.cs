@@ -5,11 +5,10 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using LifePoint.Web.App_Start;
 using Newtonsoft.Json;
 using Module = Autofac.Module;
 
-namespace LifePoint.Web
+namespace Web
 {
     public class WebModule : Module
     {
@@ -53,8 +52,6 @@ namespace LifePoint.Web
 
             builder.RegisterTypes(routses).AsSelf();
             builder.RegisterTypes(routses).AsImplementedInterfaces();
-
-            //TODO: This may not be needed. Remove later if not utilized
             builder.RegisterType<WebApiRoutesRegistrar>().AsSelf();
         }
     }

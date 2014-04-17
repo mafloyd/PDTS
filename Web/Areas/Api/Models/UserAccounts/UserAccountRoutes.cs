@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using LifePoint.Web.App_Start;
 using LifePoint.Web.Areas.Api.Controllers;
+using Web;
 
 namespace LifePoint.Web.Areas.Api.Models.UserAccounts
 {

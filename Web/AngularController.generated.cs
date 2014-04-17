@@ -132,19 +132,6 @@ namespace LifePoint.Web.Controllers
             return callInfo;
         }
 
-        [NonAction]
-        partial void GetViewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sectionName, string viewName);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult GetView(string sectionName, string viewName)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetView);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sectionName", sectionName);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewName", viewName);
-            GetViewOverride(callInfo, sectionName, viewName);
-            return callInfo;
-        }
-
     }
 }
 
